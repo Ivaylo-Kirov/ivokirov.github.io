@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivo Kirov — Developer & Entrepreneur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --text: #ffffff;
+            --text-muted: #888888;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Ambient background */
+        .ambient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+        }
+        .orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -200px; }
+        .orb-2 { width: 400px; height: 400px; background: #a855f7; bottom: 10%; left: -100px; }
+        
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(20px);
+        }
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content { max-width: 900px; }
+        .hero-label {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 span { color: var(--text-muted); }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero-links a {
+            padding: 0.875rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid #333;
+        }
+        .btn-secondary:hover { border-color: var(--accent); }
+        
+        section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+        }
+        .section-label {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--surface);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+        .project-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .skill {
+            background: var(--surface);
+            border: 1px solid #333;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            border-top: 1px solid #222;
+            padding: 3rem 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+    </div>
+    
+    <nav>
+        <div class="logo">Ivo Kirov</div>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="https://github.com/Ivaylo-Kirov" target="_blank">GitHub</a></li>
+            <li><a href="mailto:ivo.kirov@gmail.com">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label">Toronto, Canada</div>
+            <h1>Developer, <span>Entrepreneur</span></h1>
+            <p>Building digital products and helping small businesses grow online. Currently focused on web development and automation.</p>
+            <div class="hero-links">
+                <a href="#work" class="btn-primary">View My Work</a>
+                <a href="mailto:ivo.kirov@gmail.com" class="btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="work">
+        <div class="section-header">
+            <div class="section-label">Selected Work</div>
+            <h2>Recent Projects</h2>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Tica Solutions</h3>
+                <p>Web agency helping Toronto small businesses establish their online presence.</p>
+                <div class="project-tags">
+                    <span class="tag">Web Design</span>
+                    <span class="tag">Business</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Doris Kirov Tax</h3>
+                <p>Professional tax services website with client portal and appointment booking.</p>
+                <div class="project-tags">
+                    <span class="tag">Web Development</span>
+                    <span class="tag">Client Portal</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Vania Likov Homes</h3>
+                <p>Real estate agent website with property listings and contact management.</p>
+                <div class="project-tags">
+                    <span class="tag">Real Estate</span>
+                    <span class="tag">Marketing</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Project Board</h3>
+                <p>Lightweight kanban board for managing projects with an AI assistant.</p>
+                <div class="project-tags">
+                    <span class="tag">Productivity</span>
+                    <span class="tag">Tools</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="section-header">
+            <div class="section-label">About</div>
+            <h2>Background & Skills</h2>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I'm a developer and entrepreneur based in Toronto. I enjoy building things that solve real problems — from websites for local businesses to productivity tools.</p>
+                <p>Currently working with small businesses to help them establish and grow their online presence. I believe technology should be accessible and practical.</p>
+                <p>When I'm not coding, I'm exploring new tools, optimizing workflows, and learning about business growth strategies.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem;">Technologies</h3>
+                <div class="skills-list">
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Node.js</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">HTML/CSS</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">Automation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Ivaylo-Kirov" target="_blank">GitHub</a>
+            <a href="mailto:ivo.kirov@gmail.com">Email</a>
+        </div>
+        <p>© 2026 Ivo Kirov. Toronto, Canada.</p>
+    </footer>
+</body>
+</html>
