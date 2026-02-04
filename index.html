@@ -14,6 +14,7 @@
             --text-muted: #888888;
             --accent: #6366f1;
             --accent-glow: rgba(99, 102, 241, 0.3);
+            --border: #222;
         }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
@@ -55,6 +56,14 @@
             font-weight: 600;
             font-size: 1.1rem;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
         }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a {
@@ -62,6 +71,9 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         .nav-links a:hover { color: var(--text); }
         
@@ -74,16 +86,30 @@
             z-index: 1;
         }
         .hero-content { max-width: 900px; }
+        .hero-intro {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .personal-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
         .hero-label {
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -91,10 +117,11 @@
         }
         .hero h1 span { color: var(--text-muted); }
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
         .hero-links {
             display: flex;
@@ -123,7 +150,7 @@
         .btn-secondary:hover { border-color: var(--accent); }
         
         section {
-            padding: 6rem 5%;
+            padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
@@ -132,6 +159,14 @@
         
         .section-header {
             margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .section-header svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
         }
         .section-label {
             color: var(--accent);
@@ -142,48 +177,105 @@
             margin-bottom: 0.75rem;
         }
         h2 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 600;
             letter-spacing: -0.02em;
         }
         
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .clients-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .client-logo {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            transition: all 0.3s;
+        }
+        .client-logo:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .client-logo img {
+            max-width: 100%;
+            max-height: 45px;
+            opacity: 1;
+        }
+        .client-name {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .client-fallback {
+            display: none;
+        }
+        
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
         .project-card {
             background: var(--surface);
-            border: 1px solid #222;
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
+            overflow: hidden;
             transition: all 0.3s;
         }
         .project-card:hover {
             border-color: var(--accent);
             transform: translateY(-4px);
         }
-        .project-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .project-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border);
         }
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+        .project-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
         }
-        .project-tags {
+        .tech-logos {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
         }
-        .tag {
+        .tech-logo {
+            width: 28px;
+            height: 28px;
             background: rgba(99, 102, 241, 0.1);
-            color: var(--accent);
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            border-radius: 4px;
+            padding: 4px;
+        }
+        .project-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .project-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         
         .about-grid {
@@ -205,14 +297,18 @@
         }
         .skill {
             background: var(--surface);
-            border: 1px solid #333;
+            border: 1px solid var(--border);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .skill:hover {
+            border-color: var(--accent);
         }
         
         footer {
-            border-top: 1px solid #222;
+            border-top: 1px solid var(--border);
             padding: 3rem 5%;
             text-align: center;
             color: var(--text-muted);
@@ -240,67 +336,238 @@
     </div>
     
     <nav>
-        <div class="logo">Ivo Kirov</div>
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066Z"/>
+            </svg>
+            Ivo Kirov
+        </div>
         <ul class="nav-links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="https://github.com/Ivaylo-Kirov" target="_blank">GitHub</a></li>
-            <li><a href="mailto:ivo.kirov@gmail.com">Contact</a></li>
+            <li><a href="#clients">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.12-1.045.73-1.955C8.402 10.007 9.43 9 11 9c2.224 0 3.708 1.11 4.246 2.012a.26.26 0 0 1 .004.246c-.128.342-.376.645-.666.878A5.008 5.008 0 0 1 14 14H7.022ZM11 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.5 4.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/></svg>
+                Clients
+            </a></li>
+            <li><a href="#projects">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M7.5 0a.5.5 0 0 1 .5.5V2h2V.5a.5.5 0 0 1 1 0V2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM5 4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5z"/></svg>
+                Projects
+            </a></li>
+            <li><a href="mailto:ivo.kirov@gmail.com">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>
+                Contact
+            </a></li>
         </ul>
     </nav>
     
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-label">Toronto, Canada</div>
-            <h1>Developer, <span>Entrepreneur</span></h1>
-            <p>Building digital products and helping small businesses grow online. Currently focused on web development and automation.</p>
+            <div class="hero-intro">
+                <img class="personal-photo" src="https://raw.githubusercontent.com/Ivaylo-Kirov/IK/master/images/personal.jpg" alt="Ivo Kirov" onerror="this.style.display='none'">
+                <div>
+                    <div class="hero-label">Toronto, Canada</div>
+                    <h1>Hello, nice to <span>meet you.</span></h1>
+                </div>
+            </div>
+            <p>My name is Ivo Kirov, and this is my personal website. I am a developer with 17 years of experience. I hold a master's degree in Computer Science.</p>
             <div class="hero-links">
-                <a href="#work" class="btn-primary">View My Work</a>
+                <a href="#projects" class="btn-primary">View My Work</a>
                 <a href="mailto:ivo.kirov@gmail.com" class="btn-secondary">Get In Touch</a>
             </div>
         </div>
     </section>
     
-    <section id="work">
+    <section id="clients">
         <div class="section-header">
-            <div class="section-label">Selected Work</div>
-            <h2>Recent Projects</h2>
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.12-1.045.73-1.955C8.402 10.007 9.43 9 11 9c2.224 0 3.708 1.11 4.246 2.012a.26.26 0 0 1 .004.246c-.128.342-.376.645-.666.878A5.008 5.008 0 0 1 14 14H7.022ZM11 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.5 4.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/></svg>
+            <div>
+                <div class="section-label">Freelance & Corporate</div>
+                <h2>Clients</h2>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Brand experience over the last few years.</p>
+        
+        <div class="clients-grid">
+            <div class="client-logo">
+                <img src="images/roche.png" alt="Roche" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Roche</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/rbc.png" alt="RBC" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">RBC</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/janssen.png" alt="Janssen" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Janssen</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/galderma.png" alt="Galderma" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Galderma</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/bd.png" alt="BD" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">BD</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/allergan.png" alt="Allergan" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Allergan</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/abbott.png" alt="Abbott" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Abbott</span>
+            </div>
+            <div class="client-logo">
+                <img src="images/bayer.png" alt="Bayer" onerror="this.style.display='none'; this.parentElement.querySelector('.client-fallback').style.display='block'">
+                <span class="client-fallback client-name">Bayer</span>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="section-header">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M7.5 0a.5.5 0 0 1 .5.5V2h2V.5a.5.5 0 0 1 1 0V2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM5 4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5z"/></svg>
+            <div>
+                <div class="section-label">Portfolio</div>
+                <h2>Latest Projects</h2>
+            </div>
         </div>
         
         <div class="projects-grid">
             <div class="project-card">
-                <h3>Tica Solutions</h3>
-                <p>Web agency helping Toronto small businesses establish their online presence.</p>
-                <div class="project-tags">
-                    <span class="tag">Web Design</span>
-                    <span class="tag">Business</span>
+                <div class="project-header">
+                    <div class="project-title">Becton Dickinson - PharmTech</div>
+                    <div class="tech-logos">
+                        <span class="skill">Angular</span>
+                        <span class="skill">.NET</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/bdPharmTech_landing.png" alt="BD PharmTech" onerror="this.style.display='none'">
                 </div>
             </div>
-            
+
             <div class="project-card">
-                <h3>Doris Kirov Tax</h3>
-                <p>Professional tax services website with client portal and appointment booking.</p>
-                <div class="project-tags">
-                    <span class="tag">Web Development</span>
-                    <span class="tag">Client Portal</span>
+                <div class="project-header">
+                    <div class="project-title">Internal - HCP Portal</div>
+                    <div class="tech-logos">
+                        <span class="skill">Angular</span>
+                        <span class="skill">AWS</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/hcpPortal_landing.png" alt="HCP Portal" onerror="this.style.display='none'">
                 </div>
             </div>
-            
+
             <div class="project-card">
-                <h3>Vania Likov Homes</h3>
-                <p>Real estate agent website with property listings and contact management.</p>
-                <div class="project-tags">
-                    <span class="tag">Real Estate</span>
-                    <span class="tag">Marketing</span>
+                <div class="project-header">
+                    <div class="project-title">Becton Dickinson - Global IGX</div>
+                    <div class="tech-logos">
+                        <span class="skill">AEM</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/bdPortal_landing.png" alt="BD Global IGX" onerror="this.style.display='none'">
                 </div>
             </div>
-            
+
             <div class="project-card">
-                <h3>Project Board</h3>
-                <p>Lightweight kanban board for managing projects with an AI assistant.</p>
-                <div class="project-tags">
-                    <span class="tag">Productivity</span>
-                    <span class="tag">Tools</span>
+                <div class="project-header">
+                    <div class="project-title">Janssen - BioAdvance</div>
+                    <div class="tech-logos">
+                        <span class="skill">React</span>
+                        <span class="skill">.NET</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/bioA_landing.png" alt="Janssen BioAdvance" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Abbott - MyFreeStyle</div>
+                    <div class="tech-logos">
+                        <span class="skill">Django</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/myfreestyle_landing.png" alt="Abbott MyFreeStyle" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">RBC - Ville</div>
+                    <div class="tech-logos">
+                        <span class="skill">React</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/rbcV_landing.png" alt="RBC Ville" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Galderma - Dysport</div>
+                    <div class="tech-logos">
+                        <span class="skill">WordPress</span>
+                        <span class="skill">AWS</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/dysport_landing.png" alt="Galderma Dysport" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Bayer - Diabetes</div>
+                    <div class="tech-logos">
+                        <span class="skill">.NET</span>
+                        <span class="skill">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/bayerD_landing.png" alt="Bayer Diabetes" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Bayer - MyChronicMigraine</div>
+                    <div class="tech-logos">
+                        <span class="skill">.NET</span>
+                        <span class="skill">Bootstrap</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/mcm_landing.png" alt="Bayer MyChronicMigraine" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Allergan - Botox</div>
+                    <div class="tech-logos">
+                        <span class="skill">React</span>
+                        <span class="skill">AWS</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/botox_landing.png" alt="Allergan Botox" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Internal - Hagar</div>
+                    <div class="tech-logos">
+                        <span class="skill">React</span>
+                        <span class="skill">Node.js</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="images/hagar_landing.png" alt="Hagar" onerror="this.style.display='none'">
                 </div>
             </div>
         </div>
@@ -308,26 +575,32 @@
     
     <section id="about">
         <div class="section-header">
-            <div class="section-label">About</div>
-            <h2>Background & Skills</h2>
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/></svg>
+            <div>
+                <div class="section-label">Background</div>
+                <h2>Skills & Experience</h2>
+            </div>
         </div>
         
         <div class="about-grid">
             <div class="about-text">
-                <p>I'm a developer and entrepreneur based in Toronto. I enjoy building things that solve real problems — from websites for local businesses to productivity tools.</p>
-                <p>Currently working with small businesses to help them establish and grow their online presence. I believe technology should be accessible and practical.</p>
-                <p>When I'm not coding, I'm exploring new tools, optimizing workflows, and learning about business growth strategies.</p>
+                <p>I'm a developer and entrepreneur based in Toronto with 17 years of experience building digital products. I hold a master's degree in Computer Science.</p>
+                <p>My work spans from enterprise healthcare applications to small business websites. I enjoy solving complex problems and mentoring development teams.</p>
+                <p>When I'm not coding, I'm exploring new technologies, optimizing workflows, and helping businesses grow their online presence.</p>
             </div>
             <div>
                 <h3 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 1rem;">Technologies</h3>
                 <div class="skills-list">
                     <span class="skill">JavaScript</span>
                     <span class="skill">React</span>
+                    <span class="skill">Angular</span>
                     <span class="skill">Node.js</span>
                     <span class="skill">Python</span>
-                    <span class="skill">HTML/CSS</span>
-                    <span class="skill">Git</span>
-                    <span class="skill">Automation</span>
+                    <span class="skill">Django</span>
+                    <span class="skill">.NET</span>
+                    <span class="skill">AWS</span>
+                    <span class="skill">AEM</span>
+                    <span class="skill">WordPress</span>
                 </div>
             </div>
         </div>
